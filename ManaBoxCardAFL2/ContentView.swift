@@ -5,6 +5,8 @@
 //  Created by MacBook Pro on 10/11/23.
 //
 
+// 10 November, Done Collection list, can Search, and can sort by name
+
 import SwiftUI
 
 import Foundation
