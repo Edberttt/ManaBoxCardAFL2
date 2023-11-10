@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04F1F2482AFDE0270061D136 /* ManaBoxCardAFL2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2472AFDE0270061D136 /* ManaBoxCardAFL2App.swift */; };
+		04F1F24A2AFDE0270061D136 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2492AFDE0270061D136 /* ContentView.swift */; };
+		04F1F24C2AFDE0290061D136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F1F24B2AFDE0290061D136 /* Assets.xcassets */; };
+		04F1F24F2AFDE0290061D136 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F1F24E2AFDE0290061D136 /* Preview Assets.xcassets */; };
+		04F1F2592AFDE0290061D136 /* ManaBoxCardAFL2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2582AFDE0290061D136 /* ManaBoxCardAFL2Tests.swift */; };
+		04F1F2632AFDE0290061D136 /* ManaBoxCardAFL2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2622AFDE0290061D136 /* ManaBoxCardAFL2UITests.swift */; };
+		04F1F2652AFDE0290061D136 /* ManaBoxCardAFL2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2642AFDE0290061D136 /* ManaBoxCardAFL2UITestsLaunchTests.swift */; };
+		04F1F2722AFDE04C0061D136 /* WOT-Scryfall.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F1F2712AFDE04C0061D136 /* WOT-Scryfall.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04F1F2552AFDE0290061D136 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04F1F23C2AFDE0270061D136 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04F1F2432AFDE0270061D136;
+			remoteInfo = ManaBoxCardAFL2;
+		};
+		04F1F25F2AFDE0290061D136 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04F1F23C2AFDE0270061D136 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04F1F2432AFDE0270061D136;
+			remoteInfo = ManaBoxCardAFL2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04F1F2442AFDE0270061D136 /* ManaBoxCardAFL2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaBoxCardAFL2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F1F2472AFDE0270061D136 /* ManaBoxCardAFL2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBoxCardAFL2App.swift; sourceTree = "<group>"; };
+		04F1F2492AFDE0270061D136 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		04F1F24B2AFDE0290061D136 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04F1F24E2AFDE0290061D136 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		04F1F2542AFDE0290061D136 /* ManaBoxCardAFL2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManaBoxCardAFL2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F1F2582AFDE0290061D136 /* ManaBoxCardAFL2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBoxCardAFL2Tests.swift; sourceTree = "<group>"; };
+		04F1F25E2AFDE0290061D136 /* ManaBoxCardAFL2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManaBoxCardAFL2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04F1F2622AFDE0290061D136 /* ManaBoxCardAFL2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBoxCardAFL2UITests.swift; sourceTree = "<group>"; };
+		04F1F2642AFDE0290061D136 /* ManaBoxCardAFL2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBoxCardAFL2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		04F1F2712AFDE04C0061D136 /* WOT-Scryfall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "WOT-Scryfall.json"; path = "../../ManaBoxCard/ManaBoxCard/WOT-Scryfall.json"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04F1F2412AFDE0270061D136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F1F2512AFDE0290061D136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F1F25B2AFDE0290061D136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04F1F23B2AFDE0270061D136 = {
+			isa = PBXGroup;
+			children = (
+				04F1F2462AFDE0270061D136 /* ManaBoxCardAFL2 */,
+				04F1F2572AFDE0290061D136 /* ManaBoxCardAFL2Tests */,
+				04F1F2612AFDE0290061D136 /* ManaBoxCardAFL2UITests */,
+				04F1F2452AFDE0270061D136 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04F1F2452AFDE0270061D136 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04F1F2442AFDE0270061D136 /* ManaBoxCardAFL2.app */,
+				04F1F2542AFDE0290061D136 /* ManaBoxCardAFL2Tests.xctest */,
+				04F1F25E2AFDE0290061D136 /* ManaBoxCardAFL2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04F1F2462AFDE0270061D136 /* ManaBoxCardAFL2 */ = {
+			isa = PBXGroup;
+			children = (
+				04F1F2712AFDE04C0061D136 /* WOT-Scryfall.json */,
+				04F1F2472AFDE0270061D136 /* ManaBoxCardAFL2App.swift */,
+				04F1F2492AFDE0270061D136 /* ContentView.swift */,
+				04F1F24B2AFDE0290061D136 /* Assets.xcassets */,
+				04F1F24D2AFDE0290061D136 /* Preview Content */,
+			);
+			path = ManaBoxCardAFL2;
+			sourceTree = "<group>";
+		};
+		04F1F24D2AFDE0290061D136 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				04F1F24E2AFDE0290061D136 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		04F1F2572AFDE0290061D136 /* ManaBoxCardAFL2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				04F1F2582AFDE0290061D136 /* ManaBoxCardAFL2Tests.swift */,
+			);
+			path = ManaBoxCardAFL2Tests;
+			sourceTree = "<group>";
+		};
+		04F1F2612AFDE0290061D136 /* ManaBoxCardAFL2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				04F1F2622AFDE0290061D136 /* ManaBoxCardAFL2UITests.swift */,
+				04F1F2642AFDE0290061D136 /* ManaBoxCardAFL2UITestsLaunchTests.swift */,
+			);
+			path = ManaBoxCardAFL2UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04F1F2432AFDE0270061D136 /* ManaBoxCardAFL2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04F1F2682AFDE0290061D136 /* Build configuration list for PBXNativeTarget "ManaBoxCardAFL2" */;
+			buildPhases = (
+				04F1F2402AFDE0270061D136 /* Sources */,
+				04F1F2412AFDE0270061D136 /* Frameworks */,
+				04F1F2422AFDE0270061D136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ManaBoxCardAFL2;
+			productName = ManaBoxCardAFL2;
+			productReference = 04F1F2442AFDE0270061D136 /* ManaBoxCardAFL2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04F1F2532AFDE0290061D136 /* ManaBoxCardAFL2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04F1F26B2AFDE0290061D136 /* Build configuration list for PBXNativeTarget "ManaBoxCardAFL2Tests" */;
+			buildPhases = (
+				04F1F2502AFDE0290061D136 /* Sources */,
+				04F1F2512AFDE0290061D136 /* Frameworks */,
+				04F1F2522AFDE0290061D136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04F1F2562AFDE0290061D136 /* PBXTargetDependency */,
+			);
+			name = ManaBoxCardAFL2Tests;
+			productName = ManaBoxCardAFL2Tests;
+			productReference = 04F1F2542AFDE0290061D136 /* ManaBoxCardAFL2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		04F1F25D2AFDE0290061D136 /* ManaBoxCardAFL2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04F1F26E2AFDE0290061D136 /* Build configuration list for PBXNativeTarget "ManaBoxCardAFL2UITests" */;
+			buildPhases = (
+				04F1F25A2AFDE0290061D136 /* Sources */,
+				04F1F25B2AFDE0290061D136 /* Frameworks */,
+				04F1F25C2AFDE0290061D136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04F1F2602AFDE0290061D136 /* PBXTargetDependency */,
+			);
+			name = ManaBoxCardAFL2UITests;
+			productName = ManaBoxCardAFL2UITests;
+			productReference = 04F1F25E2AFDE0290061D136 /* ManaBoxCardAFL2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04F1F23C2AFDE0270061D136 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					04F1F2432AFDE0270061D136 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					04F1F2532AFDE0290061D136 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 04F1F2432AFDE0270061D136;
+					};
+					04F1F25D2AFDE0290061D136 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 04F1F2432AFDE0270061D136;
+					};
+				};
+			};
+			buildConfigurationList = 04F1F23F2AFDE0270061D136 /* Build configuration list for PBXProject "ManaBoxCardAFL2" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04F1F23B2AFDE0270061D136;
+			productRefGroup = 04F1F2452AFDE0270061D136 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04F1F2432AFDE0270061D136 /* ManaBoxCardAFL2 */,
+				04F1F2532AFDE0290061D136 /* ManaBoxCardAFL2Tests */,
+				04F1F25D2AFDE0290061D136 /* ManaBoxCardAFL2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04F1F2422AFDE0270061D136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F1F24F2AFDE0290061D136 /* Preview Assets.xcassets in Resources */,
+				04F1F24C2AFDE0290061D136 /* Assets.xcassets in Resources */,
+				04F1F2722AFDE04C0061D136 /* WOT-Scryfall.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F1F2522AFDE0290061D136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F1F25C2AFDE0290061D136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04F1F2402AFDE0270061D136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F1F24A2AFDE0270061D136 /* ContentView.swift in Sources */,
+				04F1F2482AFDE0270061D136 /* ManaBoxCardAFL2App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F1F2502AFDE0290061D136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F1F2592AFDE0290061D136 /* ManaBoxCardAFL2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04F1F25A2AFDE0290061D136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F1F2652AFDE0290061D136 /* ManaBoxCardAFL2UITestsLaunchTests.swift in Sources */,
+				04F1F2632AFDE0290061D136 /* ManaBoxCardAFL2UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04F1F2562AFDE0290061D136 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04F1F2432AFDE0270061D136 /* ManaBoxCardAFL2 */;
+			targetProxy = 04F1F2552AFDE0290061D136 /* PBXContainerItemProxy */;
+		};
+		04F1F2602AFDE0290061D136 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04F1F2432AFDE0270061D136 /* ManaBoxCardAFL2 */;
+			targetProxy = 04F1F25F2AFDE0290061D136 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04F1F2662AFDE0290061D136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		04F1F2672AFDE0290061D136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04F1F2692AFDE0290061D136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ManaBoxCardAFL2/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Edbert.ManaBoxCardAFL2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04F1F26A2AFDE0290061D136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ManaBoxCardAFL2/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Edbert.ManaBoxCardAFL2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04F1F26C2AFDE0290061D136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Edbert.ManaBoxCardAFL2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ManaBoxCardAFL2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ManaBoxCardAFL2";
+			};
+			name = Debug;
+		};
+		04F1F26D2AFDE0290061D136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Edbert.ManaBoxCardAFL2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ManaBoxCardAFL2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ManaBoxCardAFL2";
+			};
+			name = Release;
+		};
+		04F1F26F2AFDE0290061D136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Edbert.ManaBoxCardAFL2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ManaBoxCardAFL2;
+			};
+			name = Debug;
+		};
+		04F1F2702AFDE0290061D136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Edbert.ManaBoxCardAFL2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ManaBoxCardAFL2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04F1F23F2AFDE0270061D136 /* Build configuration list for PBXProject "ManaBoxCardAFL2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F1F2662AFDE0290061D136 /* Debug */,
+				04F1F2672AFDE0290061D136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04F1F2682AFDE0290061D136 /* Build configuration list for PBXNativeTarget "ManaBoxCardAFL2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F1F2692AFDE0290061D136 /* Debug */,
+				04F1F26A2AFDE0290061D136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04F1F26B2AFDE0290061D136 /* Build configuration list for PBXNativeTarget "ManaBoxCardAFL2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F1F26C2AFDE0290061D136 /* Debug */,
+				04F1F26D2AFDE0290061D136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04F1F26E2AFDE0290061D136 /* Build configuration list for PBXNativeTarget "ManaBoxCardAFL2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F1F26F2AFDE0290061D136 /* Debug */,
+				04F1F2702AFDE0290061D136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04F1F23C2AFDE0270061D136 /* Project object */;
+}
