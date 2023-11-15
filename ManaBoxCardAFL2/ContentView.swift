@@ -225,6 +225,8 @@ struct ContentView: View {
 struct CardDetailView: View {
     let card: CardData
 
+    @State private var selectedTab = 0
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -237,42 +239,163 @@ struct CardDetailView: View {
                     ProgressView()
                 }
                 .padding(.top)
+                
+                Spacer()
 
-                Text("\(card.name ?? "") \(card.mana_cost ?? "")")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding(.top)
+                HStack (spacing: 5) {
+                    Button(action: {
+                        selectedTab = 0
+                    }) {
+                        Text("Versions")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(selectedTab == 0 ? .white : .black)
+                            .background(selectedTab == 0 ? Color.red : Color.clear)
+                            .cornerRadius(15)
+                            .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
+                            )
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        selectedTab = 1
+                    }) {
+                        Text("Rulings")
+                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                            .padding()
+                            .foregroundColor(selectedTab == 1 ? .white : .black)
+                            .background(selectedTab == 1 ? Color.red : Color.clear)
+                            .cornerRadius(15)
+                            .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
+                            )
+                    }
+                }
+                .frame(maxWidth: .infinity) // Menempatkan HStack di tengah layar
+                .padding()
+                Spacer()
                 
                 Divider()
 
-                Text(card.type_line ?? "")
-                    .font(.title)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .padding(.leading)
+                if selectedTab == 0 {
+                    VStack {
+                        Text("\(card.name ?? "") \(card.mana_cost ?? "")")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.top)
+                        
+                        Divider()
+                        
+                        VStack{
+                            Text(card.type_line ?? "")
+                                .font(.title)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .padding(.leading)
+                            
+                            Divider()
 
-                Text(card.oracle_text ?? "")
-                    .font(.body)
-                    .padding(.bottom)
+                            Text(card.oracle_text ?? "")
+                                .font(.body)
+                                .padding(.bottom)
 
-                Text(card.flavor_text ?? "")
-                    .font(.body)
-                    .padding(.bottom)
+                            Text(card.flavor_text ?? "")
+                                .font(.body)
+                                .padding(.bottom)
+                        }
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                        .padding()
+                        .background(Color.init(red: 240/255, green: 240/255, blue: 240/255))
+                        .cornerRadius(15)
+                        .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
+                        )
+                        
+                    }
+                    Spacer()
+                }
+                
+                else if selectedTab == 1 {
+                    Text("Legalities")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.top)
 
-                // Legalities section
-                Divider() // Add a divider for visual separation
+                    LegalitiesView(legalities: card.legalities)
+                }
 
-                Text("Legalities")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.top)
-
-                LegalitiesView(legalities: card.legalities)
             }
         }
         .navigationTitle(card.name ?? "")
     }
 }
 
+
+//struct CardDetailView: View {
+//    let card: CardData
+//
+//    @State private var selectedTab = 0
+//
+//    var body: some View {
+//        VStack {
+//            Picker("Menu", selection: $selectedTab) {
+//                Text("Info").tag(0)
+//                Text("Rulings").tag(1)
+//            }
+//            .pickerStyle(SegmentedPickerStyle())
+//            .padding()
+//
+//            if selectedTab == 0 {
+//                ScrollView {
+//                    VStack {
+//                        // Existing content
+//                        AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+//                            image
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                        } placeholder: {
+//                            ProgressView()
+//                        }
+//                        .padding(.top)
+//
+//                        Text("\(card.name ?? "") \(card.mana_cost ?? "")")
+//                            .font(.title)
+//                            .fontWeight(.bold)
+//                            .padding(.top)
+//                        
+//                        Divider()
+//
+//                        Text(card.type_line ?? "")
+//                            .font(.title)
+//                            .fontWeight(.bold)
+//                            .padding(.leading)
+//
+//                        Text(card.oracle_text ?? "")
+//                            .font(.body)
+//                            .padding(.bottom)
+//
+//                        Text(card.flavor_text ?? "")
+//                            .font(.body)
+//                            .padding(.bottom)
+//                    }
+//                }
+//            } else if selectedTab == 1 {
+//                // Legalities section
+//                ScrollView {
+//                    VStack {
+//                        Divider() // Add a divider for visual separation
+//
+//                        Text("Legalities")
+//                            .font(.title2)
+//                            .fontWeight(.bold)
+//                            .padding(.top)
+//
+//                        LegalitiesView(legalities: card.legalities)
+//                    }
+//                }
+//            }
+//        }
+//        .navigationTitle(card.name ?? "")
+//    }
+//}
 
 struct LegalitiesView: View {
     let legalities: Legalities?
