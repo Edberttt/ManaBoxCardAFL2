@@ -328,75 +328,6 @@ struct CardDetailView: View {
     }
 }
 
-
-//struct CardDetailView: View {
-//    let card: CardData
-//
-//    @State private var selectedTab = 0
-//
-//    var body: some View {
-//        VStack {
-//            Picker("Menu", selection: $selectedTab) {
-//                Text("Info").tag(0)
-//                Text("Rulings").tag(1)
-//            }
-//            .pickerStyle(SegmentedPickerStyle())
-//            .padding()
-//
-//            if selectedTab == 0 {
-//                ScrollView {
-//                    VStack {
-//                        // Existing content
-//                        AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-//                            image
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                        } placeholder: {
-//                            ProgressView()
-//                        }
-//                        .padding(.top)
-//
-//                        Text("\(card.name ?? "") \(card.mana_cost ?? "")")
-//                            .font(.title)
-//                            .fontWeight(.bold)
-//                            .padding(.top)
-//                        
-//                        Divider()
-//
-//                        Text(card.type_line ?? "")
-//                            .font(.title)
-//                            .fontWeight(.bold)
-//                            .padding(.leading)
-//
-//                        Text(card.oracle_text ?? "")
-//                            .font(.body)
-//                            .padding(.bottom)
-//
-//                        Text(card.flavor_text ?? "")
-//                            .font(.body)
-//                            .padding(.bottom)
-//                    }
-//                }
-//            } else if selectedTab == 1 {
-//                // Legalities section
-//                ScrollView {
-//                    VStack {
-//                        Divider() // Add a divider for visual separation
-//
-//                        Text("Legalities")
-//                            .font(.title2)
-//                            .fontWeight(.bold)
-//                            .padding(.top)
-//
-//                        LegalitiesView(legalities: card.legalities)
-//                    }
-//                }
-//            }
-//        }
-//        .navigationTitle(card.name ?? "")
-//    }
-//}
-
 struct LegalitiesView: View {
     let legalities: Legalities?
     
@@ -452,7 +383,6 @@ struct LegalitiesView: View {
     }
 }
 
-
 extension Legalities {
     var formattedLegalities: [LegalitiesTuple] {
         return [
@@ -481,14 +411,10 @@ extension Legalities {
     }
 }
 
-
 struct LegalitiesTuple: Hashable {
     let title: String
     let status: String
 }
-
-
-
 
 struct SearchBar: View {
     @Binding var text: String
