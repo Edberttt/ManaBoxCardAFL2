@@ -222,32 +222,150 @@ struct ContentView: View {
     
 }
 
-
 struct CardDetailView: View {
     let card: CardData
 
     var body: some View {
-        VStack {
-            Text(card.name ?? "")
-                .font(.headline)
-            Text(card.mana_cost ?? "")
-                .font(.subheadline)
-            Text(card.type_line ?? "")
-                .font(.subheadline)
-            Text(card.oracle_text ?? "")
-                .font(.body)
-            AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                ProgressView()
+        ScrollView {
+            VStack {
+                // Existing content
+                AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ProgressView()
+                }
+                .padding(.top)
+
+                Text("\(card.name ?? "") \(card.mana_cost ?? "")")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.top)
+                
+                Divider()
+
+                Text(card.type_line ?? "")
+                    .font(.title)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding(.leading)
+
+                Text(card.oracle_text ?? "")
+                    .font(.body)
+                    .padding(.bottom)
+
+                Text(card.flavor_text ?? "")
+                    .font(.body)
+                    .padding(.bottom)
+
+                // Legalities section
+                Divider() // Add a divider for visual separation
+
+                Text("Legalities")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.top)
+
+                LegalitiesView(legalities: card.legalities)
             }
         }
-        .padding()
         .navigationTitle(card.name ?? "")
     }
 }
+
+
+struct LegalitiesView: View {
+    let legalities: Legalities?
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            
+            if let formattedLegalities = legalities?.formattedLegalities {
+                LazyVGrid(columns: [GridItem(), GridItem()]) {
+                    ForEach(formattedLegalities, id: \.self) { legality in
+                        legalityRow(title: legality.title, legality: legality.status)
+                    }
+                }
+            }
+        }
+        .padding()
+    }
+
+    func legalityRow(title: String, legality: String) -> some View {
+        HStack {
+            Text(title)
+                .font(.subheadline)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+                .padding(.vertical, 4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+
+            Spacer()
+
+            Text(legality.uppercased())
+                .font(.subheadline)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .padding(.vertical, 4)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .lineLimit(1)
+                .background(legalityBackgroundColor(legality))
+                .minimumScaleFactor(0.8)
+        }
+        .listRowInsets(EdgeInsets())
+    }
+
+    func legalityBackgroundColor(_ legality: String) -> Color {
+        switch legality {
+        case "legal":
+            return Color.green
+        case "not_legal":
+            return Color.gray
+        default:
+            return Color.clear
+        }
+    }
+}
+
+
+extension Legalities {
+    var formattedLegalities: [LegalitiesTuple] {
+        return [
+            LegalitiesTuple(title: "Standard", status: standard ?? ""),
+            LegalitiesTuple(title: "Future", status: future ?? ""),
+            LegalitiesTuple(title: "Historic", status: historic ?? ""),
+            LegalitiesTuple(title: "Gladiator", status: gladiator ?? ""),
+            LegalitiesTuple(title: "Pioneer", status: pioneer ?? ""),
+            LegalitiesTuple(title: "Explorer", status: explorer ?? ""),
+            LegalitiesTuple(title: "Modern", status: modern ?? ""),
+            LegalitiesTuple(title: "Legacy", status: legacy ?? ""),
+            LegalitiesTuple(title: "Pauper", status: pauper ?? ""),
+            LegalitiesTuple(title: "Vintage", status: vintage ?? ""),
+            LegalitiesTuple(title: "Penny", status: penny ?? ""),
+            LegalitiesTuple(title: "Commander", status: commander ?? ""),
+            LegalitiesTuple(title: "Oathbreaker", status: oathbreaker ?? ""),
+            LegalitiesTuple(title: "Brawl", status: brawl ?? ""),
+            LegalitiesTuple(title: "Historic Brawl", status: historicbrawl ?? ""),
+            LegalitiesTuple(title: "Alchemy", status: alchemy ?? ""),
+            LegalitiesTuple(title: "Pauper Commander", status: paupercommander ?? ""),
+            LegalitiesTuple(title: "Duel", status: duel ?? ""),
+            LegalitiesTuple(title: "Old School", status: oldschool ?? ""),
+            LegalitiesTuple(title: "Premodern", status: premodern ?? ""),
+            LegalitiesTuple(title: "PrEDH", status: predh ?? "")
+        ]
+    }
+}
+
+
+struct LegalitiesTuple: Hashable {
+    let title: String
+    let status: String
+}
+
+
+
 
 struct SearchBar: View {
     @Binding var text: String
