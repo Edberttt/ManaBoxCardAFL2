@@ -153,7 +153,7 @@ struct ContentView: View {
 
     enum SortOption: String, CaseIterable, Identifiable {
         case Default = "Default"
-        case sortByName = "Sort By Name"
+        case sortByName = "Sort A-Z"
 
         var id: String { self.rawValue }
     }
@@ -237,8 +237,15 @@ struct CardDetailView: View {
                         .aspectRatio(contentMode: .fit)
                 } placeholder: {
                     ProgressView()
+                    
                 }
                 .padding(.top)
+                
+                Text("Illustrated By \(card.artist ?? "")")
+                    .font(.headline)
+                    .padding(.bottom, 8)
+                    .foregroundColor(.black)
+
                 
                 Spacer()
 
