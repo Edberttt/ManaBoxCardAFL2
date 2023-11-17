@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049206D02B07AD59000ABC78 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206C52B07AD59000ABC78 /* 4.png */; };
+		049206D12B07AD59000ABC78 /* U.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206C62B07AD59000ABC78 /* U.png */; };
+		049206D22B07AD59000ABC78 /* B.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206C72B07AD59000ABC78 /* B.png */; };
+		049206D32B07AD59000ABC78 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206C82B07AD59000ABC78 /* 7.png */; };
+		049206D42B07AD59000ABC78 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206C92B07AD59000ABC78 /* W.png */; };
+		049206D52B07AD59000ABC78 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206CA2B07AD59000ABC78 /* 2.png */; };
+		049206D62B07AD59000ABC78 /* R.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206CB2B07AD59000ABC78 /* R.png */; };
+		049206D72B07AD59000ABC78 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206CC2B07AD59000ABC78 /* 3.png */; };
+		049206D82B07AD59000ABC78 /* G.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206CD2B07AD59000ABC78 /* G.png */; };
+		049206D92B07AD59000ABC78 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206CE2B07AD59000ABC78 /* 1.png */; };
+		049206DA2B07AD59000ABC78 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 049206CF2B07AD59000ABC78 /* 0.png */; };
 		04F1F2482AFDE0270061D136 /* ManaBoxCardAFL2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2472AFDE0270061D136 /* ManaBoxCardAFL2App.swift */; };
 		04F1F24A2AFDE0270061D136 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1F2492AFDE0270061D136 /* ContentView.swift */; };
 		04F1F24C2AFDE0290061D136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F1F24B2AFDE0290061D136 /* Assets.xcassets */; };
@@ -35,6 +46,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		049206C52B07AD59000ABC78 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		049206C62B07AD59000ABC78 /* U.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = U.png; sourceTree = "<group>"; };
+		049206C72B07AD59000ABC78 /* B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = B.png; sourceTree = "<group>"; };
+		049206C82B07AD59000ABC78 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		049206C92B07AD59000ABC78 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
+		049206CA2B07AD59000ABC78 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		049206CB2B07AD59000ABC78 /* R.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = R.png; sourceTree = "<group>"; };
+		049206CC2B07AD59000ABC78 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		049206CD2B07AD59000ABC78 /* G.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = G.png; sourceTree = "<group>"; };
+		049206CE2B07AD59000ABC78 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		049206CF2B07AD59000ABC78 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		04F1F2442AFDE0270061D136 /* ManaBoxCardAFL2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaBoxCardAFL2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F1F2472AFDE0270061D136 /* ManaBoxCardAFL2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBoxCardAFL2App.swift; sourceTree = "<group>"; };
 		04F1F2492AFDE0270061D136 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +95,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049206C42B07AD59000ABC78 /* MTG ASSETS */ = {
+			isa = PBXGroup;
+			children = (
+				049206C52B07AD59000ABC78 /* 4.png */,
+				049206C62B07AD59000ABC78 /* U.png */,
+				049206C72B07AD59000ABC78 /* B.png */,
+				049206C82B07AD59000ABC78 /* 7.png */,
+				049206C92B07AD59000ABC78 /* W.png */,
+				049206CA2B07AD59000ABC78 /* 2.png */,
+				049206CB2B07AD59000ABC78 /* R.png */,
+				049206CC2B07AD59000ABC78 /* 3.png */,
+				049206CD2B07AD59000ABC78 /* G.png */,
+				049206CE2B07AD59000ABC78 /* 1.png */,
+				049206CF2B07AD59000ABC78 /* 0.png */,
+			);
+			name = "MTG ASSETS";
+			path = "../../MTG ASSETS";
+			sourceTree = "<group>";
+		};
 		04F1F23B2AFDE0270061D136 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +141,7 @@
 				04F1F2472AFDE0270061D136 /* ManaBoxCardAFL2App.swift */,
 				04F1F2492AFDE0270061D136 /* ContentView.swift */,
 				04F1F24B2AFDE0290061D136 /* Assets.xcassets */,
+				049206C42B07AD59000ABC78 /* MTG ASSETS */,
 				04F1F24D2AFDE0290061D136 /* Preview Content */,
 			);
 			path = ManaBoxCardAFL2;
@@ -234,9 +276,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049206D72B07AD59000ABC78 /* 3.png in Resources */,
+				049206D22B07AD59000ABC78 /* B.png in Resources */,
+				049206D02B07AD59000ABC78 /* 4.png in Resources */,
+				049206D82B07AD59000ABC78 /* G.png in Resources */,
 				04F1F24F2AFDE0290061D136 /* Preview Assets.xcassets in Resources */,
+				049206D92B07AD59000ABC78 /* 1.png in Resources */,
+				049206D32B07AD59000ABC78 /* 7.png in Resources */,
+				049206D12B07AD59000ABC78 /* U.png in Resources */,
 				04F1F24C2AFDE0290061D136 /* Assets.xcassets in Resources */,
+				049206D52B07AD59000ABC78 /* 2.png in Resources */,
+				049206DA2B07AD59000ABC78 /* 0.png in Resources */,
 				04F1F2722AFDE04C0061D136 /* WOT-Scryfall.json in Resources */,
+				049206D62B07AD59000ABC78 /* R.png in Resources */,
+				049206D42B07AD59000ABC78 /* W.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

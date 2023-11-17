@@ -166,89 +166,91 @@ struct ContentView: View {
 
     var body: some View {
             NavigationView {
-                VStack {
-                    HStack {
-                        SearchBar(text: $searchCard)
-                            .padding(.horizontal)
-                        
-                        Button(action: {
-                            showingActionSheet = true
-                        }) {
-                            Text("Sort")
-                                    .font(.system(size: 16)) // Change font size
-                                    .fontWeight(.bold) // Make text bold
-                                    .frame(minWidth: 0, maxWidth: 70, maxHeight:8) // Make button width match parent
-                                    .padding() // Add padding
-                                    .background(Color.blue) // Change background color
-                                    .foregroundColor(.white) // Change text color
-                                    .cornerRadius(10) // Make corners rounded
-                        }
+                ZStack{
+                    
+                    VStack {
+                        HStack {
+                            SearchBar(text: $searchCard)
+                                .padding(.horizontal)
+                            
+                            Button(action: {
+                                showingActionSheet = true
+                            }) {
+                                Text("Sort")
+                                        .font(.system(size: 16)) // Change font size
+                                        .fontWeight(.bold) // Make text bold
+                                        .frame(minWidth: 0, maxWidth: 70, maxHeight:8) // Make button width match parent
+                                        .padding() // Add padding
+                                        .background(Color.blue) // Change background color
+                                        .foregroundColor(.white) // Change text color
+                                        .cornerRadius(10) // Make corners rounded
+                            }
 
-                        .actionSheet(isPresented: $showingActionSheet) {
-                            ActionSheet(title: Text("Sort By"), buttons: SortOption.allCases.map { option in
-                                .default(Text(option.rawValue)) { selectedSortOption = option }
-                            })
+                            .actionSheet(isPresented: $showingActionSheet) {
+                                ActionSheet(title: Text("Sort By"), buttons: SortOption.allCases.map { option in
+                                    .default(Text(option.rawValue)) { selectedSortOption = option }
+                                })
+                            }
+                            .padding(.horizontal, 15)// Add horizontal padding
                         }
-                        .padding(.horizontal, 15)// Add horizontal padding
-                    }
-    
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(filteredCards, id: \.id) { card in
-                                NavigationLink(destination: CardDetailView(card: card)) {
-                                    AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                    } placeholder: {
-                                        ProgressView()
+        
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                                ForEach(filteredCards, id: \.id) { card in
+                                    NavigationLink(destination: CardDetailView(card: card)) {
+                                        AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
                                     }
                                 }
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .onAppear {
-                    if let url = Bundle.main.url(forResource: "WOT-Scryfall", withExtension: "json") {
-                        do {
-                            let data = try Data(contentsOf: url)
-                            let decoder = JSONDecoder()
-                            let card = try decoder.decode(Card.self, from: data)
-                            self.cards = card.data
-                        } catch {
-                            print("Error decoding JSON: \(error)")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .onAppear {
+                        if let url = Bundle.main.url(forResource: "WOT-Scryfall", withExtension: "json") {
+                            do {
+                                let data = try Data(contentsOf: url)
+                                let decoder = JSONDecoder()
+                                let card = try decoder.decode(Card.self, from: data)
+                                self.cards = card.data
+                            } catch {
+                                print("Error decoding JSON: \(error)")
+                            }
                         }
                     }
                 }
             }
-        }
-    
-    var filteredCards: [CardData] {
-        let filtered = cards.filter { card in
-            searchCard.isEmpty || (card.name?.localizedCaseInsensitiveContains(searchCard) == true)
-        }
-
-        switch selectedSortOption {
-        case .Default:
-            return filtered
-        case .sortByName:
-            return filtered.sorted { $0.name ?? "" < $1.name ?? "" }
-        case .sortByNameDescending:
+        
+        var filteredCards: [CardData] {
+            let filtered = cards.filter { card in
+                searchCard.isEmpty || (card.name?.localizedCaseInsensitiveContains(searchCard) == true)
+            }
+            
+            switch selectedSortOption {
+            case .Default:
+                return filtered
+            case .sortByName:
+                return filtered.sorted { $0.name ?? "" < $1.name ?? "" }
+            case .sortByNameDescending:
                 return filtered.sorted { $0.name ?? "" > $1.name ?? "" }
-//        case .sortByType:
-//            return filtered.sorted { $0.type_line ?? "" < $1.type_line ?? "" }
-        case .sortByRarity:
-            return filtered.sorted { $0.rarity ?? "" < $1.rarity ?? "" }
-        case .sortByColor:
-            return filtered.sorted {
-                let color0 = $0.color_identity?.first ?? ""
-                let color1 = $1.color_identity?.first ?? ""
-                return color0 < color1
+                //        case .sortByType:
+                //            return filtered.sorted { $0.type_line ?? "" < $1.type_line ?? "" }
+            case .sortByRarity:
+                return filtered.sorted { $0.rarity ?? "" < $1.rarity ?? "" }
+            case .sortByColor:
+                return filtered.sorted {
+                    let color0 = $0.color_identity?.first ?? ""
+                    let color1 = $1.color_identity?.first ?? ""
+                    return color0 < color1
+                }
             }
         }
-//
     }
 }
 
@@ -257,33 +259,33 @@ struct CardDetailView: View {
     let card: CardData
     @State private var selectedTab = 0
     @State private var showingFullImage = false
-    
+    //    let manaCost: String
     var body: some View {
         ScrollView {
             ZStack{
                 VStack {
                     
                     Button(action: {
-                                        showingFullImage = true
-                                    }) {
-                                        AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                    }
-                                    .padding(.top)
+                        showingFullImage = true
+                    }) {
+                        AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    }
+                    .padding(.top)
                     
                     Text("Illustrated By \(card.artist ?? "")")
                         .font(.headline)
                         .padding(.bottom, 8)
                         .foregroundColor(.black)
-
+                    
                     
                     Spacer()
-
+                    
                     HStack (spacing: 5) {
                         Button(action: {
                             selectedTab = 0
@@ -318,14 +320,29 @@ struct CardDetailView: View {
                     Spacer()
                     
                     Divider()
-
+                    
                     if selectedTab == 0 {
                         VStack {
-                            Text("\(card.name ?? "") \(card.mana_cost ?? "")")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.top)
                             
+                            
+                            HStack {
+                                Text("\(card.name ?? "") ")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                //                                    .padding(.top)
+                                ForEach(card.mana_cost?.manaSymbols ?? [], id: \.self) { symbol in
+                                    ZStack {
+                                        Image(uiImage: symbol)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 20, height: 20)
+                                        Image(uiImage: symbol)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 20, height: 20)
+                                    }
+                                }
+                            }
                             Divider()
                             
                             VStack{
@@ -335,11 +352,14 @@ struct CardDetailView: View {
                                     .padding(.leading)
                                 
                                 Divider()
-
+                                
                                 Text(card.oracle_text ?? "")
                                     .font(.body)
                                     .padding(.bottom)
-
+//                                OracleTextView(oracleText: card.oracle_text ?? "")
+//                                        .font(.body)
+//                                        .padding(.bottom)
+                                
                                 Text(card.flavor_text ?? "")
                                     .font(.body)
                                     .padding(.bottom)
@@ -360,46 +380,46 @@ struct CardDetailView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                             .padding(.top)
-
+                        
                         LegalitiesView(legalities: card.legalities)
                     }
-
+                    
                 }
                 
                 if showingFullImage {
-                                Color.black.opacity(0.4)
-                                    .edgesIgnoringSafeArea(.all)
-                                    .onTapGesture {
-                                        showingFullImage = false
-                                    }
-
-                                VStack {
-                                    AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                    } placeholder: {
-                                        ProgressView()
-                                    }
-                                    .padding()
-                                    Button(action: {
-                                        showingFullImage = false
-                                    }) {
-                                        Text("Close")
-                                            .foregroundColor(.white)
-                                            .padding()
-                                            .background(Color.blue)
-                                            .cornerRadius(10)
-                                    }
-                                    .padding()
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color.clear)
-                                .cornerRadius(20)
-                                .shadow(radius: 20)
-                            }
-                
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            showingFullImage = false
+                        }
                     
+                    VStack {
+                        AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .padding()
+                        Button(action: {
+                            showingFullImage = false
+                        }) {
+                            Text("Close")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.clear)
+                    .cornerRadius(20)
+                    .shadow(radius: 20)
+                }
+                
+                
                 
             }
             
@@ -407,7 +427,48 @@ struct CardDetailView: View {
         }
         .navigationTitle(card.name ?? "")
     }
-    
+}
+
+extension String {
+    var manaSymbols: [UIImage] {
+        var symbols: [UIImage] = []
+
+        let components = self.components(separatedBy: "}")
+        for component in components {
+            let trimmedComponent = component.replacingOccurrences(of: "{", with: "")
+            switch trimmedComponent {
+            case "W":
+                symbols.append(UIImage(named: "W") ?? UIImage())
+            case "U":
+                symbols.append(UIImage(named: "U") ?? UIImage())
+            case "B":
+                symbols.append(UIImage(named: "B") ?? UIImage())
+            case "R":
+                symbols.append(UIImage(named: "R") ?? UIImage())
+            case "G":
+                symbols.append(UIImage(named: "G") ?? UIImage())
+            case "1":
+                symbols.append(UIImage(named: "1") ?? UIImage())
+            case "2":
+                symbols.append(UIImage(named: "2") ?? UIImage())
+            case "3":
+                symbols.append(UIImage(named: "3") ?? UIImage())
+            case "4":
+                symbols.append(UIImage(named: "4") ?? UIImage())
+            case "5":
+                symbols.append(UIImage(named: "5") ?? UIImage())
+            case "0":
+                symbols.append(UIImage(named: "0") ?? UIImage())
+            case "7":
+                symbols.append(UIImage(named: "7") ?? UIImage())
+            // Add the rest of your cases here...
+            default:
+                break
+            }
+        }
+
+        return symbols
+    }
 }
 
 struct LegalitiesView: View {
@@ -492,6 +553,29 @@ extension Legalities {
         ]
     }
 }
+
+//struct OracleTextView: View {
+//    let oracleText: String
+//
+//    var body: some View {
+//        let components = oracleText.components(separatedBy: "}")
+//        return ForEach(components, id: \.self) { component in
+//            let symbolComponents = component.components(separatedBy: "{")
+//            if symbolComponents.count > 1 {
+//                let trimmedSymbol = symbolComponents[1].trimmingCharacters(in: .whitespacesAndNewlines)
+//                if let image = UIImage(named: trimmedSymbol) {
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 20, height: 20)
+//                }
+//                Text(symbolComponents[0])
+//            } else {
+//                Text(component)
+//            }
+//        }
+//    }
+//}
 
 struct LegalitiesTuple: Hashable {
     let title: String
