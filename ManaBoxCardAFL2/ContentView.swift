@@ -385,12 +385,12 @@ struct CardDetailView: View {
                                 //                                        .padding(.bottom)
                                 Text(card.oracle_text ?? "")
                                         .font(.body)
-                                        .fixedSize(horizontal: false, vertical: true) // Add this line
+                                        .fixedSize(horizontal: false, vertical: true)
                                         .padding(.bottom)
                                 
                                 Text(card.flavor_text ?? "")
                                     .font(.body)
-                                    .fixedSize(horizontal: false, vertical: true) // Add this line
+                                    .fixedSize(horizontal: false, vertical: true)
                                     .padding(.bottom)
                             }
                             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
