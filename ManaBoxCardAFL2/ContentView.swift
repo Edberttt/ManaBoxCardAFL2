@@ -143,9 +143,11 @@ struct PurchaseURIs: Codable {
 
 
 struct ContentView: View {
+
     @State private var searchCard: String = ""
     @State private var cards: [CardData] = []
     @State private var selectedSortOption: SortOption = .Default
+    @State private var showingActionSheet = false
 
     let columns = [
         GridItem(.adaptive(minimum: 100))
@@ -154,79 +156,106 @@ struct ContentView: View {
     enum SortOption: String, CaseIterable, Identifiable {
         case Default = "Default"
         case sortByName = "Sort A-Z"
+        case sortByNameDescending = "Sort Z-A"
+//        case sortByType = "Sort by Type"
+        case sortByRarity = "Sort by Rarity"
+        case sortByColor = "Sort by Color"
 
         var id: String { self.rawValue }
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    SearchBar(text: $searchCard)
-                        .padding(.horizontal)
-                    
-                    Picker("Sort By Name", selection: $selectedSortOption) {
-                        ForEach(SortOption.allCases, id: \.self) { option in
-                            Text(option.rawValue)
+            NavigationView {
+                VStack {
+                    HStack {
+                        SearchBar(text: $searchCard)
+                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            showingActionSheet = true
+                        }) {
+                            Text("Sort")
+                                    .font(.system(size: 16)) // Change font size
+                                    .fontWeight(.bold) // Make text bold
+                                    .frame(minWidth: 0, maxWidth: 70, maxHeight:8) // Make button width match parent
+                                    .padding() // Add padding
+                                    .background(Color.blue) // Change background color
+                                    .foregroundColor(.white) // Change text color
+                                    .cornerRadius(10) // Make corners rounded
                         }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.trailing, 10)
-                }
 
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(filteredCards, id: \.id) { card in
-                            NavigationLink(destination: CardDetailView(card: card)) {
-                                AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                } placeholder: {
-                                    ProgressView()
+                        .actionSheet(isPresented: $showingActionSheet) {
+                            ActionSheet(title: Text("Sort By"), buttons: SortOption.allCases.map { option in
+                                .default(Text(option.rawValue)) { selectedSortOption = option }
+                            })
+                        }
+                        .padding(.horizontal, 15)// Add horizontal padding
+                    }
+    
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(filteredCards, id: \.id) { card in
+                                NavigationLink(destination: CardDetailView(card: card)) {
+                                    AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
                                 }
                             }
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                if let url = Bundle.main.url(forResource: "WOT-Scryfall", withExtension: "json") {
-                    do {
-                        let data = try Data(contentsOf: url)
-                        let decoder = JSONDecoder()
-                        let card = try decoder.decode(Card.self, from: data)
-                        self.cards = card.data
-                    } catch {
-                        print("Error decoding JSON: \(error)")
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    if let url = Bundle.main.url(forResource: "WOT-Scryfall", withExtension: "json") {
+                        do {
+                            let data = try Data(contentsOf: url)
+                            let decoder = JSONDecoder()
+                            let card = try decoder.decode(Card.self, from: data)
+                            self.cards = card.data
+                        } catch {
+                            print("Error decoding JSON: \(error)")
+                        }
                     }
                 }
             }
         }
-    }
     
     var filteredCards: [CardData] {
-            let filtered = cards.filter { card in
-                searchCard.isEmpty || (card.name?.localizedCaseInsensitiveContains(searchCard) == true)
-            }
+        let filtered = cards.filter { card in
+            searchCard.isEmpty || (card.name?.localizedCaseInsensitiveContains(searchCard) == true)
+        }
 
-            switch selectedSortOption {
-            case .Default:
-                return filtered
-            case .sortByName:
-                return filtered.sorted { $0.name ?? "" < $1.name ?? "" }
+        switch selectedSortOption {
+        case .Default:
+            return filtered
+        case .sortByName:
+            return filtered.sorted { $0.name ?? "" < $1.name ?? "" }
+        case .sortByNameDescending:
+                return filtered.sorted { $0.name ?? "" > $1.name ?? "" }
+//        case .sortByType:
+//            return filtered.sorted { $0.type_line ?? "" < $1.type_line ?? "" }
+        case .sortByRarity:
+            return filtered.sorted { $0.rarity ?? "" < $1.rarity ?? "" }
+        case .sortByColor:
+            return filtered.sorted {
+                let color0 = $0.color_identity?.first ?? ""
+                let color1 = $1.color_identity?.first ?? ""
+                return color0 < color1
             }
         }
-    
+//
+    }
 }
+
 
 struct CardDetailView: View {
     let card: CardData
-
     @State private var selectedTab = 0
-    
     @State private var showingFullImage = false
     
     var body: some View {
@@ -246,9 +275,6 @@ struct CardDetailView: View {
                                         }
                                     }
                                     .padding(.top)
-                                    
-                                    // Add more views to display other card details...
-                    
                     
                     Text("Illustrated By \(card.artist ?? "")")
                         .font(.headline)
@@ -372,11 +398,16 @@ struct CardDetailView: View {
                                 .cornerRadius(20)
                                 .shadow(radius: 20)
                             }
+                
+                    
+                
             }
+            
             
         }
         .navigationTitle(card.name ?? "")
     }
+    
 }
 
 struct LegalitiesView: View {
@@ -473,16 +504,17 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             TextField("Search", text: $text)
-                .padding(7)
-                .padding(.horizontal, 25)
+                .padding(5) // Increase padding
+                .padding(.horizontal, 30) // Increase horizontal padding
                 .background(Color(.systemGray6))
-                .cornerRadius(8)
+                .cornerRadius(15) // Increase corner radius
+                .shadow(color: .gray, radius: 2, x: 0, y: 0) // Add shadow
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 8)
+                            .padding(.leading, 15) // Increase leading padding
                         
                         if !text.isEmpty {
                             Button(action: {
@@ -490,12 +522,12 @@ struct SearchBar: View {
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(.gray)
-                                    .padding(.trailing, 8)
+                                    .padding(.trailing, 15) // Increase trailing padding
                             }
                         }
                     }
                 )
-                .padding(.horizontal, 10)
+                .padding(.horizontal, 5) // Increase horizontal padding
                 .autocapitalization(.none)
         }
     }
