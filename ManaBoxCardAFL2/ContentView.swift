@@ -196,8 +196,9 @@ struct ContentView: View {
         
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 20) {
-                                ForEach(filteredCards, id: \.id) { card in
-                                    NavigationLink(destination: CardDetailView(card: card)) {
+                                ForEach(filteredCards.indices, id: \.self) { index in
+                                    NavigationLink(destination: CardDetailView(cards: filteredCards, currentIndex: index)) {
+                                        let card = filteredCards[index]
                                         AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
                                             image
                                                 .resizable()
@@ -256,27 +257,56 @@ struct ContentView: View {
 
 
 struct CardDetailView: View {
-    let card: CardData
+
+    let cards: [CardData]
+    @State private var currentIndex: Int
     @State private var selectedTab = 0
     @State private var showingFullImage = false
-    //    let manaCost: String
+    
+    init(cards: [CardData], currentIndex: Int) {
+        self.cards = cards
+        _currentIndex = State(initialValue: currentIndex)
+    }
+    
     var body: some View {
+        let card = cards[currentIndex]
         ScrollView {
             ZStack{
                 VStack {
-                    
-                    Button(action: {
-                        showingFullImage = true
-                    }) {
-                        AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                        } placeholder: {
-                            ProgressView()
+                    HStack{
+                        Button(action: {
+                            if currentIndex > 0 {
+                                currentIndex -= 1
+                            }
+                        }) {
+                            Image(systemName: "arrow.left") // replace with your arrow image
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            showingFullImage = true
+                        }) {
+                            AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                        }
+                        .padding(.top)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            if currentIndex < cards.count - 1 {
+                                currentIndex += 1
+                            }
+                        }) {
+                            Image(systemName: "arrow.right") // replace with your arrow image
                         }
                     }
-                    .padding(.top)
                     
                     Text("Illustrated By \(card.artist ?? "")")
                         .font(.headline)
