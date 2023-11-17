@@ -143,90 +143,90 @@ struct PurchaseURIs: Codable {
 
 
 struct ContentView: View {
-
+    
     @State private var searchCard: String = ""
     @State private var cards: [CardData] = []
     @State private var selectedSortOption: SortOption = .Default
     @State private var showingActionSheet = false
-
+    
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
-
+    
     enum SortOption: String, CaseIterable, Identifiable {
         case Default = "Default"
         case sortByName = "Sort A-Z"
         case sortByNameDescending = "Sort Z-A"
-//        case sortByType = "Sort by Type"
+        //        case sortByType = "Sort by Type"
         case sortByRarity = "Sort by Rarity"
         case sortByColor = "Sort by Color"
-
+        
         var id: String { self.rawValue }
     }
-
+    
     var body: some View {
-            NavigationView {
-                ZStack{
-                    
-                    VStack {
-                        HStack {
-                            SearchBar(text: $searchCard)
-                                .padding(.horizontal)
-                            
-                            Button(action: {
-                                showingActionSheet = true
-                            }) {
-                                Text("Sort")
-                                        .font(.system(size: 16)) // Change font size
-                                        .fontWeight(.bold) // Make text bold
-                                        .frame(minWidth: 0, maxWidth: 70, maxHeight:8) // Make button width match parent
-                                        .padding() // Add padding
-                                        .background(Color.blue) // Change background color
-                                        .foregroundColor(.white) // Change text color
-                                        .cornerRadius(10) // Make corners rounded
-                            }
-
-                            .actionSheet(isPresented: $showingActionSheet) {
-                                ActionSheet(title: Text("Sort By"), buttons: SortOption.allCases.map { option in
-                                    .default(Text(option.rawValue)) { selectedSortOption = option }
-                                })
-                            }
-                            .padding(.horizontal, 15)// Add horizontal padding
+        NavigationView {
+            ZStack{
+                
+                VStack {
+                    HStack {
+                        SearchBar(text: $searchCard)
+                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            showingActionSheet = true
+                        }) {
+                            Text("Sort")
+                                .font(.system(size: 16)) // Change font size
+                                .fontWeight(.bold) // Make text bold
+                                .frame(minWidth: 0, maxWidth: 70, maxHeight:8) // Make button width match parent
+                                .padding() // Add padding
+                                .background(Color.blue) // Change background color
+                                .foregroundColor(.white) // Change text color
+                                .cornerRadius(10) // Make corners rounded
                         }
-        
-                        ScrollView {
-                            LazyVGrid(columns: columns, spacing: 20) {
-                                ForEach(filteredCards.indices, id: \.self) { index in
-                                    NavigationLink(destination: CardDetailView(cards: filteredCards, currentIndex: index)) {
-                                        let card = filteredCards[index]
-                                        AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
+                        
+                        .actionSheet(isPresented: $showingActionSheet) {
+                            ActionSheet(title: Text("Sort By"), buttons: SortOption.allCases.map { option in
+                                    .default(Text(option.rawValue)) { selectedSortOption = option }
+                            })
+                        }
+                        .padding(.horizontal, 15)// Add horizontal padding
+                    }
+                    
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(filteredCards.indices, id: \.self) { index in
+                                NavigationLink(destination: CardDetailView(cards: filteredCards, currentIndex: index)) {
+                                    let card = filteredCards[index]
+                                    AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    } placeholder: {
+                                        ProgressView()
                                     }
                                 }
                             }
-                            .padding(.horizontal)
                         }
+                        .padding(.horizontal)
                     }
-                    .navigationBarTitleDisplayMode(.inline)
-                    .onAppear {
-                        if let url = Bundle.main.url(forResource: "WOT-Scryfall", withExtension: "json") {
-                            do {
-                                let data = try Data(contentsOf: url)
-                                let decoder = JSONDecoder()
-                                let card = try decoder.decode(Card.self, from: data)
-                                self.cards = card.data
-                            } catch {
-                                print("Error decoding JSON: \(error)")
-                            }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    if let url = Bundle.main.url(forResource: "WOT-Scryfall", withExtension: "json") {
+                        do {
+                            let data = try Data(contentsOf: url)
+                            let decoder = JSONDecoder()
+                            let card = try decoder.decode(Card.self, from: data)
+                            self.cards = card.data
+                        } catch {
+                            print("Error decoding JSON: \(error)")
                         }
                     }
                 }
             }
+        }
         
         var filteredCards: [CardData] {
             let filtered = cards.filter { card in
@@ -257,7 +257,7 @@ struct ContentView: View {
 
 
 struct CardDetailView: View {
-
+    
     let cards: [CardData]
     @State private var currentIndex: Int
     @State private var selectedTab = 0
@@ -273,16 +273,18 @@ struct CardDetailView: View {
         ScrollView {
             ZStack{
                 VStack {
-                    HStack{
+                    HStack {
                         Button(action: {
                             if currentIndex > 0 {
                                 currentIndex -= 1
                             }
                         }) {
-                            Image(systemName: "arrow.left") // replace with your arrow image
+                            Image("LeftBG") // Left arrow image from assets
+                                .resizable()
+                                .frame(width: 30, height: 30)
                         }
                         
-                        Spacer()
+//                        Spacer()
                         
                         Button(action: {
                             showingFullImage = true
@@ -291,30 +293,28 @@ struct CardDetailView: View {
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: .infinity)
                             } placeholder: {
                                 ProgressView()
                             }
                         }
-                        .padding(.top)
-                        
-                        Spacer()
                         
                         Button(action: {
                             if currentIndex < cards.count - 1 {
                                 currentIndex += 1
                             }
                         }) {
-                            Image(systemName: "arrow.right") // replace with your arrow image
+                            Image("RightBG") // Right arrow image from assets
+                                .resizable()
+                                .frame(width: 30, height: 30)
                         }
                     }
+                    .padding(.horizontal)
                     
                     Text("Illustrated By \(card.artist ?? "")")
                         .font(.headline)
                         .padding(.bottom, 8)
                         .foregroundColor(.black)
-                    
-                    
-                    Spacer()
                     
                     HStack (spacing: 5) {
                         Button(action: {
@@ -347,19 +347,16 @@ struct CardDetailView: View {
                     }
                     .frame(maxWidth: .infinity) // Menempatkan HStack di tengah layar
                     .padding()
-                    Spacer()
                     
                     Divider()
                     
                     if selectedTab == 0 {
-                        VStack {
-                            
-                            
+                        VStack{
                             HStack {
                                 Text("\(card.name ?? "") ")
                                     .font(.title)
                                     .fontWeight(.bold)
-                                //                                    .padding(.top)
+                                
                                 ForEach(card.mana_cost?.manaSymbols ?? [], id: \.self) { symbol in
                                     ZStack {
                                         Image(uiImage: symbol)
@@ -386,9 +383,9 @@ struct CardDetailView: View {
                                 Text(card.oracle_text ?? "")
                                     .font(.body)
                                     .padding(.bottom)
-//                                OracleTextView(oracleText: card.oracle_text ?? "")
-//                                        .font(.body)
-//                                        .padding(.bottom)
+                                //                                OracleTextView(oracleText: card.oracle_text ?? "")
+                                //                                        .font(.body)
+                                //                                        .padding(.bottom)
                                 
                                 Text(card.flavor_text ?? "")
                                     .font(.body)
@@ -462,7 +459,7 @@ struct CardDetailView: View {
 extension String {
     var manaSymbols: [UIImage] {
         var symbols: [UIImage] = []
-
+        
         let components = self.components(separatedBy: "}")
         for component in components {
             let trimmedComponent = component.replacingOccurrences(of: "{", with: "")
@@ -491,12 +488,11 @@ extension String {
                 symbols.append(UIImage(named: "0") ?? UIImage())
             case "7":
                 symbols.append(UIImage(named: "7") ?? UIImage())
-            // Add the rest of your cases here...
             default:
                 break
             }
         }
-
+        
         return symbols
     }
 }
@@ -517,7 +513,7 @@ struct LegalitiesView: View {
         }
         .padding()
     }
-
+    
     func legalityRow(title: String, legality: String) -> some View {
         HStack {
             Text(title)
@@ -528,9 +524,9 @@ struct LegalitiesView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-
+            
             Spacer()
-
+            
             Text(legality.uppercased())
                 .font(.subheadline)
                 .fontWeight(.bold)
@@ -543,7 +539,7 @@ struct LegalitiesView: View {
         }
         .listRowInsets(EdgeInsets())
     }
-
+    
     func legalityBackgroundColor(_ legality: String) -> Color {
         switch legality {
         case "legal":
