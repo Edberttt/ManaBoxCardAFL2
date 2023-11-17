@@ -199,12 +199,20 @@ struct ContentView: View {
                             ForEach(filteredCards.indices, id: \.self) { index in
                                 NavigationLink(destination: CardDetailView(cards: filteredCards, currentIndex: index)) {
                                     let card = filteredCards[index]
-                                    AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                    } placeholder: {
-                                        ProgressView()
+                                    VStack{
+                                        AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                        Text(card.name ?? "")
+                                            .font(.caption)
+                                            .foregroundColor(.black)
+                                            .multilineTextAlignment(.center)
+                                            .lineLimit(2)
+                                            .bold()
                                     }
                                 }
                             }
@@ -255,7 +263,6 @@ struct ContentView: View {
     }
 }
 
-
 struct CardDetailView: View {
     
     let cards: [CardData]
@@ -274,42 +281,48 @@ struct CardDetailView: View {
             ZStack{
                 VStack {
                     HStack {
-                        Button(action: {
-                            if currentIndex > 0 {
-                                currentIndex -= 1
+                        ZStack{
+                            Button(action: {
+                                showingFullImage = true
+                            }) {
+                                AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: .infinity)
+                                } placeholder: {
+                                    ProgressView()
+                                }
                             }
-                        }) {
-                            Image("LeftBG") // Left arrow image from assets
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                        }
-                        
-//                        Spacer()
-                        
-                        Button(action: {
-                            showingFullImage = true
-                        }) {
-                            AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(maxWidth: .infinity)
-                            } placeholder: {
-                                ProgressView()
+                            HStack{
+                                Button(action: {
+                                    if currentIndex > 0 {
+                                        currentIndex -= 1
+                                    }
+                                }) {
+                                    Image("LeftBG") // Left arrow image from assets
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    if currentIndex < cards.count - 1 {
+                                        currentIndex += 1
+                                    }
+                                }) {
+                                    Image("RightBG") // Right arrow image from assets
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
                             }
+                            .padding(.horizontal)
+                            
                         }
-                        
-                        Button(action: {
-                            if currentIndex < cards.count - 1 {
-                                currentIndex += 1
-                            }
-                        }) {
-                            Image("RightBG") // Right arrow image from assets
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                        }
+                        //                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
+                    
                     
                     Text("Illustrated By \(card.artist ?? "")")
                         .font(.headline)
@@ -379,19 +392,21 @@ struct CardDetailView: View {
                                     .padding(.leading)
                                 
                                 Divider()
-
+                                
                                 //                                OracleTextView(oracleText: card.oracle_text ?? "")
                                 //                                        .font(.body)
                                 //                                        .padding(.bottom)
                                 Text(card.oracle_text ?? "")
-                                        .font(.body)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .padding(.bottom)
+                                    .font(.body)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.bottom)
                                 
                                 Text(card.flavor_text ?? "")
                                     .font(.body)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .padding(.bottom)
+                                
+                                
                             }
                             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                             .padding()
