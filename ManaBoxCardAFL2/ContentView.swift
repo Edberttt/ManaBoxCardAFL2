@@ -379,16 +379,18 @@ struct CardDetailView: View {
                                     .padding(.leading)
                                 
                                 Divider()
-                                
-                                Text(card.oracle_text ?? "")
-                                    .font(.body)
-                                    .padding(.bottom)
+
                                 //                                OracleTextView(oracleText: card.oracle_text ?? "")
                                 //                                        .font(.body)
                                 //                                        .padding(.bottom)
+                                Text(card.oracle_text ?? "")
+                                        .font(.body)
+                                        .fixedSize(horizontal: false, vertical: true) // Add this line
+                                        .padding(.bottom)
                                 
                                 Text(card.flavor_text ?? "")
                                     .font(.body)
+                                    .fixedSize(horizontal: false, vertical: true) // Add this line
                                     .padding(.bottom)
                             }
                             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
