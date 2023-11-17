@@ -227,109 +227,153 @@ struct CardDetailView: View {
 
     @State private var selectedTab = 0
     
+    @State private var showingFullImage = false
+    
     var body: some View {
         ScrollView {
-            VStack {
-                // Existing content
-                AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
-                    ProgressView()
+            ZStack{
+                VStack {
                     
-                }
-                .padding(.top)
-                
-                Text("Illustrated By \(card.artist ?? "")")
-                    .font(.headline)
-                    .padding(.bottom, 8)
-                    .foregroundColor(.black)
-
-                
-                Spacer()
-
-                HStack (spacing: 5) {
                     Button(action: {
-                        selectedTab = 0
-                    }) {
-                        Text("Versions")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .foregroundColor(selectedTab == 0 ? .white : .black)
-                            .background(selectedTab == 0 ? Color.red : Color.clear)
-                            .cornerRadius(15)
-                            .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
-                            )
-                    }
+                                        showingFullImage = true
+                                    }) {
+                                        AsyncImage(url: URL(string: card.image_uris?.art_crop ?? "")!) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                    }
+                                    .padding(.top)
+                                    
+                                    // Add more views to display other card details...
+                    
+                    
+                    Text("Illustrated By \(card.artist ?? "")")
+                        .font(.headline)
+                        .padding(.bottom, 8)
+                        .foregroundColor(.black)
+
                     
                     Spacer()
-                    
-                    Button(action: {
-                        selectedTab = 1
-                    }) {
-                        Text("Rulings")
-                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                            .padding()
-                            .foregroundColor(selectedTab == 1 ? .white : .black)
-                            .background(selectedTab == 1 ? Color.red : Color.clear)
-                            .cornerRadius(15)
-                            .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
-                            )
-                    }
-                }
-                .frame(maxWidth: .infinity) // Menempatkan HStack di tengah layar
-                .padding()
-                Spacer()
-                
-                Divider()
 
-                if selectedTab == 0 {
-                    VStack {
-                        Text("\(card.name ?? "") \(card.mana_cost ?? "")")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding(.top)
+                    HStack (spacing: 5) {
+                        Button(action: {
+                            selectedTab = 0
+                        }) {
+                            Text("Versions")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(selectedTab == 0 ? .white : .black)
+                                .background(selectedTab == 0 ? Color.red : Color.clear)
+                                .cornerRadius(15)
+                                .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
+                                )
+                        }
                         
-                        Divider()
+                        Spacer()
                         
-                        VStack{
-                            Text(card.type_line ?? "")
+                        Button(action: {
+                            selectedTab = 1
+                        }) {
+                            Text("Rulings")
+                                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                .padding()
+                                .foregroundColor(selectedTab == 1 ? .white : .black)
+                                .background(selectedTab == 1 ? Color.red : Color.clear)
+                                .cornerRadius(15)
+                                .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
+                                )
+                        }
+                    }
+                    .frame(maxWidth: .infinity) // Menempatkan HStack di tengah layar
+                    .padding()
+                    Spacer()
+                    
+                    Divider()
+
+                    if selectedTab == 0 {
+                        VStack {
+                            Text("\(card.name ?? "") \(card.mana_cost ?? "")")
                                 .font(.title)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                .padding(.leading)
+                                .fontWeight(.bold)
+                                .padding(.top)
                             
                             Divider()
+                            
+                            VStack{
+                                Text(card.type_line ?? "")
+                                    .font(.title)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .padding(.leading)
+                                
+                                Divider()
 
-                            Text(card.oracle_text ?? "")
-                                .font(.body)
-                                .padding(.bottom)
+                                Text(card.oracle_text ?? "")
+                                    .font(.body)
+                                    .padding(.bottom)
 
-                            Text(card.flavor_text ?? "")
-                                .font(.body)
-                                .padding(.bottom)
+                                Text(card.flavor_text ?? "")
+                                    .font(.body)
+                                    .padding(.bottom)
+                            }
+                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                            .padding()
+                            .background(Color.init(red: 240/255, green: 240/255, blue: 240/255))
+                            .cornerRadius(15)
+                            .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
+                            )
+                            
                         }
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .padding()
-                        .background(Color.init(red: 240/255, green: 240/255, blue: 240/255))
-                        .cornerRadius(15)
-                        .overlay( RoundedRectangle(cornerRadius: 15) .stroke(Color.gray, lineWidth: 1) // Warna dan ketebalan border
-                        )
-                        
+                        Spacer()
                     }
-                    Spacer()
+                    
+                    else if selectedTab == 1 {
+                        Text("Legalities")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.top)
+
+                        LegalitiesView(legalities: card.legalities)
+                    }
+
                 }
                 
-                else if selectedTab == 1 {
-                    Text("Legalities")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.top)
+                if showingFullImage {
+                                Color.black.opacity(0.4)
+                                    .edgesIgnoringSafeArea(.all)
+                                    .onTapGesture {
+                                        showingFullImage = false
+                                    }
 
-                    LegalitiesView(legalities: card.legalities)
-                }
-
+                                VStack {
+                                    AsyncImage(url: URL(string: card.image_uris?.normal ?? "")!) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .padding()
+                                    Button(action: {
+                                        showingFullImage = false
+                                    }) {
+                                        Text("Close")
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .background(Color.blue)
+                                            .cornerRadius(10)
+                                    }
+                                    .padding()
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.clear)
+                                .cornerRadius(20)
+                                .shadow(radius: 20)
+                            }
             }
+            
         }
         .navigationTitle(card.name ?? "")
     }
